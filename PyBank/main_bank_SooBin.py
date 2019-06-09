@@ -42,11 +42,11 @@ with open(csvpath, 'r', newline = '') as csvfile:
 
 # Creating a text file
 file = open(outputpath, 'w', newline = '')
-file.write("Financial Analysis\n")
-file.write("----------------------------\n")
-file.write(f"Total Months: {len(month)}\n")
-file.write(f"Total: ${total}\n")
-file.write(f"Average Change: ${change}\n")
-file.write(f"Greatest Increase in Profits: {monthIncreased} (${mostIncreased})\n")
-file.write(f"Greatest Decrease in Profits: {monthDecreased} (${mostDecreased})\n")
+file.write("Financial Analysis\n"
+           "----------------------------\n"
+          f"Total Months: {len(month)}\n"
+          f"Total: ${total}\n"
+          f"Average Change: ${change}\n"
+          f"Greatest Increase in Profits: {monthIncreased} (${mostIncreased})\n"
+          f"Greatest Decrease in Profits: {monthDecreased} (${mostDecreased})\n")
 file.close()
