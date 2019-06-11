@@ -41,12 +41,12 @@ with open(csvpath, 'r', newline = '') as csvfile:
     monthDecreased = month[delta.index(mostDecreased) + 1]
 
 # Creating a text file
-file = open(outputpath, 'w', newline = '')
-file.write("Financial Analysis\n"
+txtfile = open(outputpath, 'w', newline = '')
+txtfile.write("Financial Analysis\n"
            "----------------------------\n"
           f"Total Months: {len(month)}\n"
           f"Total: ${total}\n"
           f"Average Change: ${change}\n"
           f"Greatest Increase in Profits: {monthIncreased} (${mostIncreased})\n"
           f"Greatest Decrease in Profits: {monthDecreased} (${mostDecreased})\n")
-file.close()
+txtfile.close()

@@ -2,12 +2,16 @@ import os
 import csv
 
 csvpath = os.path.join('..', 'election_data.csv')
+outputpath = os.path.join('main_poll_completed_SooBin.txt')
 
 total = 0
 
 votedFor = []
 candList = []
 results = {}
+cand = []
+votes = []
+percent = []
 
 maximum = 0
 
@@ -16,7 +20,7 @@ with open(csvpath, 'r', newline = '') as csvfile:
     next(csvreader, None)
 
     for row in csvreader:
-        
+
         # Total votes
         total += 1
 
@@ -34,19 +38,34 @@ with open(csvpath, 'r', newline = '') as csvfile:
         # Number of votes counted
         results[candidate] += 1
 
-    print("Election Results")
-    print("-------------------------")
-    print(f"Total Votes: {total}")
-
     # Calculating percentages
-    for cand in results:
-        numerator = results.get(cand)
-        percent = round(numerator / total, 2)
-        print(f"{cand}: {percent} ({numerator})")
+    for candidate, vote in results.items():
+        cand.append(candidate)
+        votes.append(vote)
+    
+    for vote in votes:
+        percentage = round(vote / total * 100, 2)
+        percent.append('{0:.3f}'.format(percentage))
+    
+    # Gathering data into one
+    final = list(zip(cand, votes, percent))
 
-        if results > maximum:
-            maximum = results
-            winner = cand
-            print(cand)
+    # Declaring winner
+    winning = max(votes)
+    
+    for elect in final:
+        if elect[1] == winning:
+            winner = elect[0]
 
-    print("-------------------------")
+# Creating a text file
+txtfile = open(outputpath, 'w', newline = '')
+txtfile.write("Election Results\n"
+    "-------------------------\n"
+    f"Total Votes: {total}\n"
+    "-------------------------\n")
+for printing in final:
+    txtfile.write(f"{printing[0]}: {printing[2]}% ({printing[1]})\n")
+txtfile.write("-------------------------\n"
+    f"Winner: {winner}\n"
+    "-------------------------\n")
+txtfile.close()
