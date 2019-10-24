@@ -1,4 +1,4 @@
-# Python Analyses
+# Analysis with Python
 These analyses consist of two datasets:
 1. Profit and loss data of a fictional bank, and
 2. Results of a fictional election.
